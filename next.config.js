@@ -3,6 +3,14 @@ const nextConfig = {
     env:{
         API_URL: process.env.API_URL
     },
+    async rewrites() {
+        return [
+            {
+                source: "/",
+                destination: "/signin",
+            }
+        ];
+    },
 };
 
 module.exports = {
