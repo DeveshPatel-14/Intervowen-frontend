@@ -7,6 +7,7 @@ import { useSearchParams } from "next/navigation";
 import { usePathname } from "next/navigation";
 // import Auth from "../components/Auth";
 import React, { useEffect, useRef } from "react";
+import { Suspense } from "react"
 
 export default function RootLayout({ children }) {
   const scrollbar = useRef(null);
@@ -20,17 +21,19 @@ export default function RootLayout({ children }) {
     pathname?.includes("/signout");
 
   return (
-    <html lang="en">
-      <SessionProvider>
-        {/* <Auth
+    <Suspense>
+      <html lang="en">
+        <SessionProvider>
+          {/* <Auth
           routesToSkip={{
             '/signin': true,
             '/signout': true,
           }}
         > */}
           <body>{children}</body>
-        {/* </Auth> */}
-      </SessionProvider>
-    </html>
+          {/* </Auth> */}
+        </SessionProvider>
+      </html>
+    </Suspense>
   );
 }
